@@ -1,0 +1,33 @@
+STRAW SHOP 🍓 — MODELO DE LOJA GRATUITA
+
+O site inclui:
+- Design rosa pastel, fofo e brilhante
+- Logotipo com morango e nome Straw Shop
+- Catálogo com pesquisa, filtros e ordenação
+- Carrinho funcional no navegador
+- Resumo de pedido copiável
+- Layout adaptado a celulares e computadores
+
+COMO TESTAR:
+1. Extraia o ZIP.
+2. Abra index.html num navegador ou editor que tenha pré-visualização HTML.
+3. Para publicar, veja os passos abaixo.
+
+COMO EDITAR OS PRODUTOS:
+No arquivo index.html, procure `const products = [`.
+Edite os nomes, preços (por exemplo, 12.50), categorias, disponibilidade e imagens.
+Preço 0 mostra “Preço a definir”. Não publique preços ou disponibilidades que ainda não confirmou.
+Para adicionar imagens, crie a pasta `images` e coloque os arquivos nela. No campo image, use por exemplo `images/party-balloons.png`.
+
+PUBLICAÇÃO GRATUITA:
+Você pode hospedar como site estático usando GitHub Pages (https://pages.github.com/) ou Cloudflare Pages (https://pages.cloudflare.com/). A configuração pelo celular pode ser um pouco técnica. O endereço padrão da plataforma é gratuito; domínio próprio pode custar dinheiro.
+
+LIMITAÇÕES:
+O carrinho é demonstrativo e funciona no navegador do visitante. Não existe checkout, pagamento, login, estoque sincronizado, envio automático ou banco de dados. O resumo copiado precisa ser enviado manualmente à loja.
+
+SEGURANÇA E REGRAS:
+- Nunca peça ou compartilhe senhas Roblox.
+- Peça ajuda de um responsável antes de publicar uma loja, receber pagamentos ou assumir compromissos de venda.
+- Verifique as regras atuais do Roblox/Flee the Facility antes de oferecer trocas ou vendas de itens virtuais.
+- Straw Shop é um modelo independente, não afiliado ao Roblox, Flee the Facility ou Marretão Store.
+- Use apenas imagens que você tenha autorização para usar.
