@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f5">
+<title>Straw Shop 🍓</title>
+<style>
+:root{--pink:#f4a9c2;--pink2:#ffe0eb;--pink3:#fff5f8;--berry:#c83d68;--berrydark:#8e294b;--leaf:#9dbd82;--ink:#492b38;--muted:#927783;--line:#f3cbd9;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--pink3);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}
+.wrap{max-width:1120px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:5;background:#fff8fbed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:1000;letter-spacing:-.5px;font-size:20px}
+.logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(145deg,#ffdce8,#f6a9c4);display:grid;place-items:center;font-size:26px;box-shadow:0 5px 14px #c83d6820}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.5px;font-weight:800}
+.cartbtn,.btn{border:0;border-radius:13px;padding:11px 14px;font-weight:850;cursor:pointer;transition:transform .15s,filter .15s}
+.cartbtn{background:#fff;color:var(--berrydark);border:1px solid var(--line);box-shadow:0 3px 10px #c83d6810}
+.btn{background:linear-gradient(135deg,#e86e98,#c83d68);color:white;display:inline-block;text-decoration:none;text-align:center;box-shadow:0 5px 12px #c83d6826}
+.btn:active,.cartbtn:active{transform:scale(.98)}
+.hero{padding:25px 0 20px}
+.heroBox{position:relative;overflow:hidden;border:1px solid #f2c2d3;border-radius:26px;padding:27px;background:radial-gradient(ellipse at 95% 0%,#ffd5e3 0,transparent 42%),linear-gradient(135deg,#fff,#ffe7ef);box-shadow:0 10px 30px #c83d6810}
+.heroBox:after{content:"✦  ·  ✿  ·  ✦";position:absolute;right:18px;bottom:12px;color:#e89ab5;font-size:19px;letter-spacing:8px;opacity:.8}
+.eyebrow{color:var(--berry);font-size:11px;font-weight:950;letter-spacing:1.8px;text-transform:uppercase}
+h1{font-size:clamp(32px,8vw,56px);line-height:1.02;letter-spacing:-1.8px;margin:10px 0;color:#7f2b4a}
+.hero p{color:#805c6b;max-width:560px;margin:0 0 20px}
+.toolbar{display:grid;grid-template-columns:1fr;gap:10px;margin:20px 0}
+input,select{width:100%;padding:13px 14px;border-radius:13px;border:1px solid var(--line);background:#fff;color:var(--ink);outline-color:var(--pink)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:2px 0 9px}
+.filter{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#805c6b;border-radius:999px;padding:9px 14px;cursor:pointer}
+.filter.active{background:var(--berry);color:#fff;border-color:var(--berry);font-weight:850}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:22px 0 14px}
+h2{font-size:23px;margin:0;color:#7f2b4a}.muted{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 5px 16px #c83d6809}
+.itemimage{aspect-ratio:1/1;background:linear-gradient(145deg,#fff2f7,#ffe1eb);display:grid;place-items:center;color:#a77c8d;font-size:12px;text-align:center;padding:10px;position:relative}
+.itemimage img{width:100%;height:100%;object-fit:contain}
+.placeholder{font-size:42px;opacity:.95}
+.pill{position:absolute;left:9px;top:9px;background:#fff;border:1px solid #f0bfd0;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:850;color:var(--berrydark)}
+.cardbody{padding:12px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card h3{margin:0;font-size:15px;overflow-wrap:anywhere;color:#5c3042}
+.price{font-weight:950;font-size:18px;color:var(--berrydark)}
+.stock{font-size:11px;color:#668252}
+.stock.out{color:#ba425e}
+.card .btn{width:100%;margin-top:auto;padding:10px;font-size:13px}
+.empty{grid-column:1/-1;padding:30px;text-align:center;border:1px dashed #e9afc4;border-radius:14px;color:var(--muted);background:#fff}
+.info{margin:25px 0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 5px 16px #c83d6808}
+.info h2{font-size:19px;margin-bottom:8px}.info p{color:#805c6b;margin:7px 0}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0 35px;color:#9c7b89;font-size:12px}
+.drawerbg{position:fixed;inset:0;background:#492b3866;z-index:10;display:none}
+.drawer{position:fixed;z-index:11;right:0;top:0;height:100dvh;width:min(420px,100%);background:#fff7fa;border-left:1px solid var(--line);padding:18px;transform:translateX(105%);transition:transform .22s;overflow:auto}
+.drawer.open{transform:translateX(0)}.drawerbg.open{display:block}
+.drawerhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.close{background:#ffe1eb;color:var(--berrydark);border:0;border-radius:10px;padding:8px 12px;font-size:20px}
+.cartline{display:grid;grid-template-columns:1fr auto;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.cartline small{display:block;color:var(--muted)}.qty{display:flex;gap:6px;align-items:center}.qty button{background:#ffe1eb;color:var(--berrydark);border:0;border-radius:7px;padding:5px 9px}
+.total{display:flex;justify-content:space-between;font-size:18px;font-weight:950;padding:18px 0;color:var(--berrydark)}
+.note{font-size:12px;color:var(--muted)}
+@media(min-width:680px){.toolbar{grid-template-columns:1fr 210px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.heroBox{padding:42px}.cardbody{padding:15px}}
+@media(min-width:950px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#"><span class="logo" aria-hidden="true">🍓</span><span>STRAW SHOP<small>STRAWBERRY HAMMER SHOP</small></span></a>
+<button class="cartbtn" id="openCart">🛍️ Carrinho <span id="cartCount">0</span></button>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="heroBox">
+<div class="eyebrow">✿ Colecionáveis virtuais ✿</div>
+<h1>Um cantinho doce<br>para sua coleção. 🍓</h1>
+<p>Explore marretas, descubra novidades e encontre os itens que combinam com você!</p>
+<a class="btn" href="#catalogo">♡ Explorar catálogo</a>
+</div></section>
+<section id="catalogo">
+<div class="sectionhead"><div><h2>Catálogo de marretas</h2><div class="muted">Escolha seus favoritos e monte seu pedido.</div></div></div>
+<div class="toolbar">
+<input id="search" type="search" placeholder="🔎 Procurar um item..." aria-label="Pesquisar produtos">
+<select id="sort" aria-label="Ordenar produtos"><option value="featured">Em destaque</option><option value="az">Nome: A–Z</option><option value="priceAsc">Preço: menor primeiro</option><option value="priceDesc">Preço: maior primeiro</option></select>
+</div>
+<div class="filters" id="filters">
+<button class="filter active" data-cat="Todas">Todas</button><button class="filter" data-cat="Lendária">Lendárias</button><button class="filter" data-cat="Rara">Raras</button><button class="filter" data-cat="Comum">Comuns</button><button class="filter" data-cat="Novidade">Novidades</button>
+</div>
+<div class="grid" id="products"></div>
+</section>
+<section class="info"><h2>♡ Como funciona</h2>
+<p>1. Escolha os itens e adicione ao carrinho.</p><p>2. Revise o pedido e copie o resumo para enviar à loja.</p><p>3. Confirme disponibilidade, entrega e pagamento antes de pagar.</p>
+<p class="note">Este modelo não processa pagamentos nem realiza trocas automaticamente. Nunca compartilhe sua senha do Roblox.</p></section>
+<section class="info"><h2>✿ Perguntas frequentes</h2>
+<p><b>Os itens estão sempre disponíveis?</b><br>A disponibilidade precisa ser confirmada antes de fechar o pedido.</p>
+<p><b>O site aceita pagamentos?</b><br>Este modelo monta um resumo do pedido, mas não recebe pagamentos.</p>
+<p><b>Esta é uma loja oficial?</b><br>Não. A Straw Shop é uma marca independente e não é afiliada ao Roblox, Flee the Facility ou outras lojas.</p></section>
+</main>
+<footer><div class="wrap">STRAW SHOP 🍓 · Loja independente de itens virtuais. Roblox e Flee the Facility pertencem aos respectivos titulares.</div></footer>
+<div class="drawerbg" id="drawerbg"></div>
+<aside class="drawer" id="drawer" aria-label="Carrinho">
+<div class="drawerhead"><h2>Seu carrinho 🍓</h2><button class="close" id="closeCart" aria-label="Fechar">×</button></div>
+<div id="cartItems"></div><div class="total"><span>Total</span><span id="total">R$ 0,00</span></div>
+<p class="note">Carrinho demonstrativo. Confirme os preços e a disponibilidade antes de concluir o pedido.</p>
+<button class="btn" id="copyOrder" style="width:100%">Copiar resumo do pedido</button>
+<p class="note" id="copyStatus" aria-live="polite"></p>
+</aside>
+<script>
+// EDITE OS PRODUTOS NESTA LISTA. Preço 0 significa "Preço a definir".
+// Para usar imagens, adicione uma pasta "images" e informe, por exemplo, "images/party-balloons.png".
+const products = [
+ {id:1,name:"Party Balloons",price:0,category:"Lendária",status:"Disponibilidade a confirmar",image:"",featured:true},
+ {id:2,name:"Marine Anchor",price:0,category:"Rara",status:"Disponibilidade a confirmar",image:"",featured:true},
+ {id:3,name:"Moo Moo Plushie",price:0,category:"Lendária",status:"Disponibilidade a confirmar",image:"",featured:false},
+ {id:4,name:"Strawberry Moo Plushie",price:0,category:"Lendária",status:"Disponibilidade a confirmar",image:"",featured:false},
+ {id:5,name:"Default",price:0,category:"Comum",status:"Disponibilidade a confirmar",image:"",featured:false},
+ {id:6,name:"Novo item",price:0,category:"Novidade",status:"Edite este produto",image:"",featured:false}
+];
+let category="Todas";let cart={};
+const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ let arr=products.filter(p=>(category==="Todas"||(category==="Novidade"?p.category==="Novidade":p.category===category))&&(p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)));
+ const sort=document.getElementById("sort").value;
+ if(sort==="az")arr.sort((a,b)=>a.name.localeCompare(b.name));
+ if(sort==="priceAsc")arr.sort((a,b)=>a.price-b.price);
+ if(sort==="priceDesc")arr.sort((a,b)=>b.price-a.price);
+ if(sort==="featured")arr.sort((a,b)=>Number(b.featured)-Number(a.featured));
+ const el=document.getElementById("products");
+ if(!arr.length){el.innerHTML='<div class="empty">Nenhum item encontrado. 🍓</div>';return;}
+ el.innerHTML=arr.map(p=>`<article class="card"><div class="itemimage">${p.image?`<img src="${p.image}" alt="${p.name}">`:`<div><div class="placeholder">🍓🔨</div><div>Adicione a imagem do item</div></div>`}<span class="pill">${p.category}</span></div><div class="cardbody"><h3>${p.name}</h3><div class="price">${p.price>0?money(p.price):"Preço a definir"}</div><div class="stock">${p.status}</div><button class="btn" onclick="addToCart(${p.id})">Adicionar ao carrinho ♡</button></div></article>`).join("");
+}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();openDrawer();}
+function renderCart(){
+ const count=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById("cartCount").textContent=count;
+ const lines=Object.entries(cart).filter(([id,q])=>q>0).map(([id,q])=>{const p=products.find(x=>x.id===Number(id));return `<div class="cartline"><div><b>${p.name}</b><small>${p.price>0?money(p.price):"Preço a confirmar"}</small></div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${q}</span><button onclick="changeQty(${p.id},1)">+</button></div></div>`}).join("");
+ document.getElementById("cartItems").innerHTML=lines||'<p class="muted">Seu carrinho está vazio. 🍓</p>';
+ const total=Object.entries(cart).reduce((sum,[id,q])=>sum+products.find(p=>p.id===Number(id)).price*q,0);
+ document.getElementById("total").textContent=money(total);
+}
+function changeQty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];renderCart();}
+function openDrawer(){document.getElementById("drawer").classList.add("open");document.getElementById("drawerbg").classList.add("open")}
+function closeDrawer(){document.getElementById("drawer").classList.remove("open");document.getElementById("drawerbg").classList.remove("open")}
+document.getElementById("openCart").onclick=openDrawer;document.getElementById("closeCart").onclick=closeDrawer;document.getElementById("drawerbg").onclick=closeDrawer;
+document.getElementById("search").addEventListener("input",renderProducts);document.getElementById("sort").addEventListener("change",renderProducts);
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{category=b.dataset.cat;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderProducts()}));
+document.getElementById("copyOrder").onclick=async()=>{
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);
+ if(!entries.length){document.getElementById("copyStatus").textContent="Adicione um item primeiro.";return;}
+ const lines=entries.map(([id,q])=>{const p=products.find(x=>x.id===Number(id));return `${q}x ${p.name} — ${p.price>0?money(p.price):"preço a confirmar"}`});
+ const total=entries.reduce((sum,[id,q])=>sum+products.find(p=>p.id===Number(id)).price*q,0);
+ const txt="Olá! Quero consultar este pedido:\n"+lines.join("\n")+"\nTotal parcial: "+money(total)+"\nPor favor, confirme disponibilidade e valor final.";
+ try{await navigator.clipboard.writeText(txt);document.getElementById("copyStatus").textContent="Resumo copiado! Cole na conversa com a loja."}
+ catch(e){document.getElementById("copyStatus").textContent=txt}
+};
+renderProducts();renderCart();
+</script>
+</body></html>
